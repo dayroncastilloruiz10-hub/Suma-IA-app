@@ -1,0 +1,57 @@
+{
+  "name": "llamasabia",
+  "version": "1.0.0",
+  "description": "IA offline portable para educación sin internet",
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:portable": "electron-builder --win portable --config",
+    "download:model": "node scripts/download-model.js"
+  },
+  "keywords": [
+    "ai",
+    "offline",
+    "education",
+    "llama",
+    "portable"
+  ],
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.llamasabia.app",
+    "productName": "LlamaSabIA",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "portable",
+      "icon": "assets/icon.ico"
+    },
+    "extraResources": [
+      {
+        "from": "engine/",
+        "to": "engine/",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "models/",
+        "to": "models/",
+        "filter": [
+          "**/*.gguf"
+        ]
+      }
+    ],
+    "portable": {
+      "artifactName": "${productName}-${version}-portable.exe"
+    }
+  },
+  "dependencies": {
+    "marked": "^16.4.1"
+  }
+}
